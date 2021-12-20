@@ -6,24 +6,31 @@
     <title>ALL USERS</title>
 </head>
 <body>
+<h1>USERS LIST</h1>
+<br>
+
 <table border="1">
     <tr>
         <th>ID</th>
         <th>NAME</th>
         <th>LASTNAME</th>
         <th>LOGIN</th>
+        <th>ROLE</th>
         <th>ACTION</th>
     </tr>
 
     <tr th:each="user : ${usersList}">
-        <td th:utext="${user.getId()}">id</td>
-        <td th:utext="${user.getName()}">name</td>
-        <td th:utext="${user.getLastname()}">lastname</td>
-        <td th:utext="${user.getLogin()}">login</td>
+        <td th:text="${user.getId()}">id</td>
+        <td th:text="${user.getName()}">name</td>
+        <td th:text="${user.getLastname()}">lastname</td>
+        <td th:text="${user.getLogin()}">login</td>
+        <td> </td>
         <td>
-            <a th:href="@{/edit/{id}(id=${user.getId()})}">Edit</a>
-            <form th:method="GET" th:action="@{/delete/{id}(id=${user.getId()})}">
-                <input type="submit" value="Delete"/>
+            <a th:href="@{/admin/edit/{id}(id=${user.getId()})}">EDIT </a>
+            <br>
+            <br>
+            <form th:method="GET" th:action="@{/admin/delete/{id}(id=${user.getId()})}">
+                <input type="submit" value="DELETE"/>
         </td>
     </tr>
 
@@ -32,6 +39,12 @@
 
 </div>
 <br>
-<a href="/add">Create new User</a>
+<br>
+<a href="/admin/add">CREATE NEW USER</a>
+
+<br>
+<br>
+<br>
+<a th:href="@{/logout}">EXIT</a>
 </body>
 </html>

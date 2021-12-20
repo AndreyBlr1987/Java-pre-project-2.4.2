@@ -1,33 +1,58 @@
 package web.Model;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
-   @Column(name="name")
-    private  String name ;
-    @Column(name="lastname")
-    private  String lastname ;
-    @Column(name="login")
-    private  String login ;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "lastname")
+    private String lastname;
+
+    @Column(name = "login")
+    private String login;
+
+    @Column(name = "password")
+    private String password;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
     public User() {
     }
 
-    public User(int id, String name, String lastname, String login) {
-        this.id = id;
+    public User(String name, String lastname, String login, String password, Set<Role> roles) {
         this.name = name;
         this.lastname = lastname;
         this.login = login;
+        this.password = password;
+        this.roles = roles;
     }
 
     public int getId() {
@@ -60,5 +85,62 @@ public class User {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return getRoles();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return getName();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                '}';
     }
 }
