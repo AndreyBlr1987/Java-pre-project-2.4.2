@@ -20,10 +20,12 @@
     <input type="text" th:field="*{login}" id="login"/>
     <label for="password">ENTER PASSWORD: </label>
     <input type="text" th:field="*{password}" id="password"/>
-    <br/>
     <br>
-    <input type="checkbox" name="roles" value="ROLE_USER"/> USER
-    <input type="checkbox" name="roles" value="ROLE_ADMIN"/> ADMIN
+    <br/>
+    <div th:each="role : ${roles}">
+        <input type="checkbox" th:name="roles" th:value="${role.role}" th:text="${role.role}" th:checked="${role.role} == USER"/>
+    </div>
+    <br/>
     <p>
 
     <input type="submit" value="EDIT USER">

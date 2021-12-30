@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,6 +32,14 @@ public class Role implements GrantedAuthority {
     public Role() {
     }
 
+    public Role(String role) {
+        this.role = role;
+    }
+
+    public Role(int id, String role) {
+        this.id = id;
+        this.role = role;
+    }
 
     public int getId() {
         return id;
@@ -59,5 +68,10 @@ public class Role implements GrantedAuthority {
     @Override
     public String getAuthority() {
         return getRole();
+    }
+
+    @Override
+    public String toString() {
+        return role;
     }
 }

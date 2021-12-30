@@ -23,8 +23,8 @@ public class RoleDaoImpl implements RoleDao {
 
     @Override
     public Role getRoleByName(String name) {
-        return (Role) entityManager.createQuery(
-                "from Role r where r.role=:name"
+        return entityManager.createQuery(
+                "SELECT  r from Role r where r.role=:name", Role.class
         ).setParameter("name", name).getSingleResult();
     }
 
@@ -35,5 +35,20 @@ public class RoleDaoImpl implements RoleDao {
             roleSet.add(getRoleByName(role));
         }
         return (HashSet) roleSet;
+    }
+
+    @Override
+    public void add(Role role) {
+        entityManager.persist(role);
+    }
+
+    @Override
+    public void edit(Role role) {
+        entityManager.merge(role);
+    }
+
+    @Override
+    public Role getById(int id) {
+        return entityManager.find(Role.class, id);
     }
 }

@@ -15,20 +15,21 @@
     <table border="1" cellpadding="5">
         <tr>
             <th>Id</th>
-            <th>Имя</th>
-            <th>Фамилия</th>
-            <th>Возраст</th>
+            <th>NAME</th>
+            <th>LASTNAME</th>
+            <th>LOGIN</th>
+            <th>ROLE</th>
         </tr>
         <tr>
             <td th:text="${user.getId()}"></td>
             <td th:text="${user.getName()}"></td>
             <td th:text="${user.getLastname()}"></td>
-            <td th:text="${user.getAge()}"></td>
+            <td th:text="${user.getLogin()}"></td>
             <td th:each="role : ${roles}">
             <p th:text="${role.getRole()}"></p></td>
         </tr>
         </tr>
-        <a th:href="@{/logout}">Выйти</a>
+
     </table>
 
     <br/>

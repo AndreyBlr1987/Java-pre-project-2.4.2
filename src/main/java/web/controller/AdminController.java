@@ -38,13 +38,15 @@ public class AdminController {
 
     @GetMapping("/edit/{id}")
     public String editPage(@PathVariable("id") int id, Model model) {
+        model.addAttribute("roles", roleService.getAllRoles());
         model.addAttribute("user", userService.getById(id));
-        model.addAttribute("role", roleService.getAllRoles());
+
         return "editPage";
     }
 
     @PostMapping("/edit")
-    public String editUser(@ModelAttribute User user, @RequestParam("roles") String[] role) {
+    public String editUser(@ModelAttribute User user,
+                           @RequestParam("roles") String[] role) {
         user.setRoles(roleService.getSetOfRoles(role));
         userService.edit(user);
         return "redirect:/admin";
@@ -53,22 +55,22 @@ public class AdminController {
     @GetMapping(value = "/add")
     public String addPage(Model model) {
         User user = new User();
-        model.addAttribute("user", user);
-        model.addAttribute("role", roleService.getAllRoles());
+        model.addAttribute("roles", roleService.getAllRoles());
+        model.addAttribute("user",user);
         return "new";
     }
 
     @PostMapping(value = "/add")
-    public String addUser(@ModelAttribute User user, @RequestParam("roles") String[] role) {
-        user.setRoles(roleService.getSetOfRoles(role));
+    public String addUser(@ModelAttribute User user,
+                          @RequestParam(value = "roles") String [] roles) {
+        user.setRoles(roleService.getSetOfRoles(roles));
         userService.add(user);
         return "redirect:/admin";
     }
 
     @GetMapping(value = "/delete/{id}")
     public String deleteUser(@PathVariable("id") int id) {
-        User user = userService.getById(id);
-        userService.delete(user);
+        userService.delete(userService.getById(id));
         return "redirect:/admin";
     }
 

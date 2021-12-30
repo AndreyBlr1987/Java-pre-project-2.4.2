@@ -14,16 +14,16 @@ import web.dao.UserDao;
 @Transactional
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private final UserDao userDao;
+    private final UserService userService;
 
     @Autowired
-    public UserDetailsServiceImpl(UserDao userDao) {
-        this.userDao = userDao;
+    public UserDetailsServiceImpl(UserService userService) {
+        this.userService = userService;
     }
 
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        User user = userDao.getUserByName(name);
+        User user = userService.getUserByName(name);
         if (user == null) {
             throw new UsernameNotFoundException(String.format("User '%s' not found", name));
         }

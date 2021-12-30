@@ -33,11 +33,12 @@
     <br>
     <br>
     <div th:each="role : ${roles}">
-        <input type="checkbox" name="nameRoles"
+        <input type="checkbox" th:name="roles"
                th:value="${role.role}"
-               th:text="${role.role}"
-               th:checked="${role.role} == USER"/>
+               th:text="${role.role}"/>
     </div>
+    <br/>
+
     <input type="submit" value="Create new User"/>
     <br>
     <br>

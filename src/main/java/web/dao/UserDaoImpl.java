@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-
 @Repository
 public class UserDaoImpl implements UserDao {
 
@@ -16,7 +15,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> allUsers() {
-        return entityManager.createQuery("select c from User c", User.class).getResultList();
+        return entityManager.createQuery("SELECT u FROM User u", User.class).getResultList();
     }
 
     @Override
@@ -41,8 +40,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUserByName(String name) {
-        return (User) entityManager.createQuery(
-                "from User u  where u.name=:name"
-        ).setParameter("name", name).getSingleResult();
+        return entityManager.createQuery(
+                        "SELECT user FROM User user WHERE user.name =:name", User.class)
+                .setParameter("name", name)
+                .getSingleResult();
     }
 }
