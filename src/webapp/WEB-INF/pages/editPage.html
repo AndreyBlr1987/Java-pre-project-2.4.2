@@ -23,12 +23,13 @@
     <br>
     <br/>
     <div th:each="role : ${roles}">
-        <input type="checkbox" th:name="roles" th:value="${role.role}" th:text="${role.role}" th:checked="${role.role} == USER"/>
+        <input type="checkbox" th:name="roles" th:value="${role.role}" th:text="${role.role}"
+        />
     </div>
     <br/>
     <p>
 
-    <input type="submit" value="EDIT USER">
+        <input type="submit" value="EDIT USER">
 </form>
 <a th:href="@{/logout}">EXIT</a>
 </body>

@@ -8,6 +8,7 @@ import web.dao.RoleDao;
 
 import java.util.HashSet;
 import java.util.List;
+
 @Service
 @Transactional
 public class RoleServiceImpl implements RoleService {
@@ -36,7 +37,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public void   add(Role role) {
+    public void add(Role role) {
         roleDao.add(role);
     }
 
@@ -47,6 +48,6 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role getById(int id) {
-      return   roleDao.getById(id);
+        return roleDao.getById(id);
     }
 }
