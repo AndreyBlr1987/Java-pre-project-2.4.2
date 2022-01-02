@@ -1,6 +1,7 @@
 package web.Model;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.Transient;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

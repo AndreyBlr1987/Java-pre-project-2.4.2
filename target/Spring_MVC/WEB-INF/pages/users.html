@@ -25,16 +25,15 @@
         <td th:text="${user.getLastname()}">lastname</td>
         <td th:text="${user.getLogin()}">login</td>
         <td>
-        <div th:each="role : ${user.getRoles()}">
-            <p th:text="${role.getRole()}"></p>
-        </div>
+            <div th:each="role : ${user.getRoles()}">
+                <p th:text="${role.getRole()}"></p>
+            </div>
         <td>
             <a th:href="@{/admin/edit/{id}(id=${user.getId()})}">EDIT </a>
             <br>
             <br>
-        <a th:href="@{/admin/delete/{id}(id=${user.getId()})}">DELETE </a>
-<!--        <form th:method="GET" th:action="@{/admin/delete/{id}(id=${user.getId()})}">-->
-<!--                <input type="submit" value="DELETE"/>-->
+            <a th:href="@{/admin/delete/{id}(id=${user.getId()})}">DELETE </a>
+
         </td>
     </tr>
 
