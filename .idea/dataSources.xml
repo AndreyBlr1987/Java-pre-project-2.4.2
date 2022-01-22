@@ -22,5 +22,12 @@
       <jdbc-url>jdbc:mysql://localhost:3306/mydbtest</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="mydbtest@localhost [3]" uuid="19911aa6-a47b-4a73-ad08-4cc35bb96cb2">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/mydbtest</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
