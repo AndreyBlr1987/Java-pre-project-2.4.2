@@ -20,7 +20,7 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "users")
+@Table(name = "users1")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,9 +41,9 @@ public class User implements UserDetails {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            name = "users_roles"
-            , joinColumns = @JoinColumn(name = "users_id")
-            , inverseJoinColumns = @JoinColumn(name = "roles_id"))
+            name = "users_roles1"
+            , joinColumns = @JoinColumn(name = "users1_id")
+            , inverseJoinColumns = @JoinColumn(name = "roles1_id"))
     private Set<Role> roles = new HashSet<>();
 
     public User() {
