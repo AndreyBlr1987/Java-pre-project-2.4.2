@@ -1,6 +1,6 @@
 
-INSERT INTO users1 VALUES (1, 'Vanya', 'ivanov', 'ivan', '$2a$04$jSO6ibDUkdofTqx1nEfe6uaVqb2Ks3M0UwtlfZOX.VDc45UumELqK');
-INSERT INTO users1 VALUES (2, 'Stas', 'Stasov', 'Stas', '$2a$04$jSO6ibDUkdofTqx1nEfe6uaVqb2Ks3M0UwtlfZOX.VDc45UumELqK');
+INSERT INTO users1 (id , name , lastname, login, password)  VALUES (1, 'ivan', 'ivanov', 'ivanushka', '$2a$04$jSO6ibDUkdofTqx1nEfe6uaVqb2Ks3M0UwtlfZOX.VDc45UumELqK');
+INSERT INTO users1 (id , name , lastname, login, password) VALUES (2, 'stas', 'stasov', 'stasic', '$2a$04$jSO6ibDUkdofTqx1nEfe6uaVqb2Ks3M0UwtlfZOX.VDc45UumELqK');
 
 
 INSERT INTO roles1 VALUES (1, 'USER');
