@@ -22,6 +22,7 @@ import java.util.Set;
 @Entity
 @Table(name = "users1")
 public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

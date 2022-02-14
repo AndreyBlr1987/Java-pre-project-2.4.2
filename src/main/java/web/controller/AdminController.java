@@ -42,7 +42,6 @@ public class AdminController {
     public String editPage(@PathVariable("id") int id, Model model) {
         model.addAttribute("roles", roleService.getAllRoles());
         model.addAttribute("user", userService.getById(id));
-
         return "editPage";
     }
 

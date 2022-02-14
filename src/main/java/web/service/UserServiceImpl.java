@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void edit(User user) {
-        if (user.getPassword() == "")
+        if (user.getPassword() != "")
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.edit(user);
     }
